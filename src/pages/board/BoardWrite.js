@@ -1,10 +1,10 @@
-export default function BoardWrite() {
+function BoardWrite() {
   return (
-    <div className="page-container">
-      <div className="layout-center">
-        <div>BOARD WRITE</div>
-        <input type="text" />
-      </div>
+    <div>
+      <div>BOARD WRITE</div>
+      <input type="text" />
     </div>
   );
 }
+
+export { BoardWrite };

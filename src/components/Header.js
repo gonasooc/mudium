@@ -7,7 +7,7 @@ export default function Header() {
         <Link to="/">
           <span>HOME</span>
         </Link>
-        <Link to="/list">
+        <Link to="/board/list">
           <span>BOARD</span>
         </Link>
       </div>

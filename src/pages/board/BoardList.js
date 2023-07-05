@@ -1,14 +1,28 @@
 import { Link } from "react-router-dom";
 
-export default function BoardList() {
+function BoardList() {
   return (
-    <div className="page-container">
-      <div className="layout-center">
-        <div>BOARD LIST</div>
-        <Link to="/write">
-          <button>글쓰기</button>
-        </Link>
-      </div>
+    <div>
+      <div>BOARD LIST</div>
+      <Link to="/board/write">
+        <button>글쓰기</button>
+      </Link>
+      <ul>
+        {[1, 2].map((item, index) => {
+          return (
+            <li key={index}>
+              <Link to={`/board/detail/${index}`}>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Numquam minima laudantium magni, recusandae accusamus,
+                consequatur explicabo ducimus eaque officia vitae id rerum,
+                blanditiis modi culpa? Hic consequuntur labore laboriosam est!
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
+
+export { BoardList };

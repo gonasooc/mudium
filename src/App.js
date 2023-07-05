@@ -5,8 +5,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
 import Header from "components/Header";
 import Home from "pages/Home";
-import BoardList from "pages/board/BoardList";
-import BoardWrite from "pages/board/BoardWrite";
+import { Index } from "pages/board/Index";
+import { BoardList } from "pages/board/BoardList";
+import { BoardWrite } from "pages/board/BoardWrite";
+import { BoardDetail } from "pages/board/BoardDetail";
+import { BoardEdit } from "pages/board/BoardEdit";
 
 const theme = createTheme({
   // 별도 테마 설정(MUI 기본 폰트 변경)
@@ -23,8 +26,12 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/list" element={<BoardList />} />
-          <Route path="/write" element={<BoardWrite />} />
+          <Route path="/board" element={<Index />}>
+            <Route path="list" element={<BoardList />} />
+            <Route path="write" element={<BoardWrite />} />
+            <Route path="detail/:id" element={<BoardDetail />} />
+            <Route path="edit/:id" element={<BoardEdit />} />
+          </Route>
         </Routes>
       </Router>
     </ThemeProvider>
