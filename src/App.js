@@ -1,9 +1,12 @@
 import "styles/Base.scss"; // reset css
 import "styles/App.scss"; // main css
+import "styles/Header.scss"; // header css
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
 import Header from "components/Header";
-import Test from "pages/Test";
+import Home from "pages/Home";
+import BoardList from "pages/board/BoardList";
+import BoardWrite from "pages/board/BoardWrite";
 
 const theme = createTheme({
   // 별도 테마 설정(MUI 기본 폰트 변경)
@@ -19,7 +22,9 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Test />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/list" element={<BoardList />} />
+          <Route path="/write" element={<BoardWrite />} />
         </Routes>
       </Router>
     </ThemeProvider>
