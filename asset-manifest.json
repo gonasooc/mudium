@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/mudium/static/css/main.10b38751.css",
+    "main.js": "/mudium/static/js/main.4f77d249.js",
+    "static/js/787.190cb46c.chunk.js": "/mudium/static/js/787.190cb46c.chunk.js",
+    "index.html": "/mudium/index.html",
+    "main.10b38751.css.map": "/mudium/static/css/main.10b38751.css.map",
+    "main.4f77d249.js.map": "/mudium/static/js/main.4f77d249.js.map",
+    "787.190cb46c.chunk.js.map": "/mudium/static/js/787.190cb46c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.10b38751.css",
+    "static/js/main.4f77d249.js"
+  ]
+}
