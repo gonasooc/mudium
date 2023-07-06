@@ -41,23 +41,20 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Router>
-        <Header />
-        <Routes>
-          {/* <Route path="/login" element={!isLogin ? <Login /> : <Home />} /> */}
-          <Route
-            path="/register"
-            element={!isLogin ? <Register /> : <Home />}
-          />
-          <Route path="/" element={isLogin ? <Home /> : <Login />} />
-          <Route path="/board" element={<Index />}>
-            <Route path="list" element={<BoardList />} />
-            <Route path="write" element={<BoardWrite />} />
-            <Route path="detail/:id" element={<BoardDetail />} />
-            <Route path="edit/:id" element={<BoardEdit />} />
-          </Route>
-        </Routes>
-      </Router>
+      {/* <Router> */}
+      <Header />
+      <Routes>
+        {/* <Route path="/login" element={!isLogin ? <Login /> : <Home />} /> */}
+        <Route path="/register" element={!isLogin ? <Register /> : <Home />} />
+        <Route path="/" element={isLogin ? <Home /> : <Login />} />
+        <Route path="/board" element={<Index />}>
+          <Route path="list" element={<BoardList />} />
+          <Route path="write" element={<BoardWrite />} />
+          <Route path="detail/:id" element={<BoardDetail />} />
+          <Route path="edit/:id" element={<BoardEdit />} />
+        </Route>
+      </Routes>
+      {/* </Router> */}
     </ThemeProvider>
   );
 }
