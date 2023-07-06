@@ -21,7 +21,7 @@ function Register() {
     try {
       await createUserWithEmailAndPassword(auth, email, password).then(
         (useCredential) => {
-          console.log(useCredential);
+          console.log("회원가입 성공");
         }
       );
     } catch (error) {

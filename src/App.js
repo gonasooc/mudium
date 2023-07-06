@@ -3,7 +3,7 @@ import "styles/App.scss"; // main css
 import "styles/Header.scss"; // header css
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
-import { db } from "./firebaseConfig";
+// import { db } from "./firebaseConfig";
 import Header from "components/Header";
 import Home from "pages/Home";
 import { Register } from "pages/auth/Register";
@@ -13,8 +13,8 @@ import { BoardList } from "pages/board/BoardList";
 import { BoardWrite } from "pages/board/BoardWrite";
 import { BoardDetail } from "pages/board/BoardDetail";
 import { BoardEdit } from "pages/board/BoardEdit";
-import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { useState } from "react";
+// import { collection, getDocs } from "firebase/firestore";
 
 const theme = createTheme({
   // 별도 테마 설정(MUI 기본 폰트 변경)
@@ -26,15 +26,6 @@ const theme = createTheme({
 
 function App() {
   let [isLogin, setIsLogin] = useState(false);
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const data = await getDocs(collection(db, "board"));
-  //     console.log("data", data);
-  //   };
-
-  //   getData();
-  // }, []);
 
   return (
     <ThemeProvider theme={theme}>

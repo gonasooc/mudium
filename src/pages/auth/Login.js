@@ -22,7 +22,6 @@ function Login() {
     try {
       await signInWithEmailAndPassword(auth, email, password).then(
         (useCredential) => {
-          console.log(useCredential);
           console.log("로그인완료");
         }
       );

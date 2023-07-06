@@ -12,14 +12,19 @@ function BoardList() {
         <button>글쓰기</button>
       </Link>
       <ul>
-        {[1, 2].map((item, index) => {
+        {boardArr?.map((item) => {
           return (
-            <li key={index}>
-              <Link to={`/board/detail/${index}`}>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Numquam minima laudantium magni, recusandae accusamus,
-                consequatur explicabo ducimus eaque officia vitae id rerum,
-                blanditiis modi culpa? Hic consequuntur labore laboriosam est!
+            <li key={item.id} style={{ border: "1px solid #000" }}>
+              <Link to={`/board/detail/${item.id}`}>
+                <p>
+                  {item._document.data.value.mapValue.fields.title.stringValue}
+                </p>
+                <p>
+                  {
+                    item._document.data.value.mapValue.fields.content
+                      .stringValue
+                  }
+                </p>
               </Link>
             </li>
           );
