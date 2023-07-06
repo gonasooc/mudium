@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 function BoardList() {
+  const context = useOutletContext();
+  const boardArr = context.boardData.docs;
+  console.log(boardArr);
+
   return (
     <div>
       <div>BOARD LIST</div>

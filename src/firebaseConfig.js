@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "@firebase/firestore";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -7,17 +8,18 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBwLYls4oMkO-RRHduVenW0_oVklDu15es",
-  authDomain: "mudium-3ccd2.firebaseapp.com",
-  projectId: "mudium-3ccd2",
-  storageBucket: "mudium-3ccd2.appspot.com",
-  messagingSenderId: "2188291302",
-  appId: "1:2188291302:web:73913ba09f0591f9c19f27",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGIN_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // const auth = getAuth(app);
+export const db = getFirestore(app);
 
 export {
   getAuth,
