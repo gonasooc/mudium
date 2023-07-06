@@ -34,7 +34,6 @@ function BoardEdit() {
   }, []);
 
   const edit = async () => {
-    console.log("됐냐");
     await setDoc(doc(db, "board", id), {
       title: title,
       content: content,
@@ -56,7 +55,6 @@ function BoardEdit() {
               defaultValue={title}
               onChange={(event) => {
                 setTitle(event.target.value);
-                console.log(title);
               }}
             />
           </div>
@@ -68,7 +66,6 @@ function BoardEdit() {
               defaultValue={content}
               onChange={(event) => {
                 setContent(event.target.value);
-                console.log(content);
               }}
             ></textarea>
           </div>

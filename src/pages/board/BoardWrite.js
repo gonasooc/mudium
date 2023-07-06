@@ -15,11 +15,6 @@ function BoardWrite() {
       });
       console.log("Document written with ID: ", docRef.id);
       alert("글 등록이 완료됐습니다.");
-
-      // await setDoc(doc(db, "board"), {
-      //   title: "new title test",
-      //   content: "new content test",
-      // });
     } catch (error) {
       console.log(error);
     }

@@ -14,12 +14,11 @@ function Index() {
 
     getData();
   }, []);
-  console.log("boardData", boardData.docs);
 
   return (
     <div className="page-container">
       <div className="layout-center">
-        <div>BoardHome</div>
+        {/* <div>BoardHome</div> */}
         <Outlet context={{ boardData }}></Outlet>
       </div>
     </div>

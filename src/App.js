@@ -13,8 +13,8 @@ import { BoardList } from "pages/board/BoardList";
 import { BoardWrite } from "pages/board/BoardWrite";
 import { BoardDetail } from "pages/board/BoardDetail";
 import { BoardEdit } from "pages/board/BoardEdit";
-import { useState } from "react";
-// import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { getAuth, onAuthStateChanged } from "firebaseConfig";
 
 const theme = createTheme({
   // 별도 테마 설정(MUI 기본 폰트 변경)
@@ -25,14 +25,26 @@ const theme = createTheme({
 });
 
 function App() {
+  const auth = getAuth();
+
   let [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLogin(true);
+      } else {
+        setIsLogin(false);
+      }
+    });
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
       <Router>
         <Header />
         <Routes>
-          <Route path="/login" element={!isLogin ? <Login /> : <Home />} />
+          {/* <Route path="/login" element={!isLogin ? <Login /> : <Home />} /> */}
           <Route
             path="/register"
             element={!isLogin ? <Register /> : <Home />}
