@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
 
 function BoardList() {
   const context = useOutletContext();
@@ -18,12 +19,11 @@ function BoardList() {
 
   return (
     <div>
-      <div>BOARD LIST</div>
       <Link to="/board/write">
-        <button>글쓰기</button>
+        <Button variant="contained">글쓰기</Button>
       </Link>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 350 }} aria-label="simple table">
+        <Table sx={{ minWidth: 350 }} aria-label="sticky table">
           <TableHead>
             <TableRow>
               <TableCell>제목</TableCell>
@@ -34,6 +34,7 @@ function BoardList() {
           <TableBody>
             {boardArr?.map((item) => (
               <TableRow
+                hover
                 onClick={() => {
                   goDetail(item.id);
                 }}

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { getAuth, onAuthStateChanged } from "firebaseConfig";
 import { useEffect, useState } from "react";
@@ -10,7 +10,11 @@ export default function Header() {
   const [loginState, setLoginState] = useState(true);
   const user = useSelector((state) => state.user.user);
 
+  const location = useLocation();
+
   useEffect(() => {
+    console.log("location", location);
+
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setLoginState(true);

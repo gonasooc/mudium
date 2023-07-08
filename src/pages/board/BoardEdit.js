@@ -2,6 +2,7 @@ import { db } from "firebaseConfig";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Loader from "components/Loader";
 
 function BoardEdit() {
   const params = useParams();
@@ -26,7 +27,7 @@ function BoardEdit() {
       } catch (error) {
         console.log(error);
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
 
@@ -44,10 +45,9 @@ function BoardEdit() {
   return (
     <div>
       {loading ? (
-        <div>로딩중입니다</div>
+        <Loader />
       ) : (
         <>
-          <div>BOARD EDIT</div>
           <div>
             <label htmlFor="">제목</label>
             <input

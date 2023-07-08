@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { db } from "firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import Button from '@mui/material/Button';
 
 function BoardDetail() {
   const params = useParams();
@@ -25,13 +26,12 @@ function BoardDetail() {
 
   return (
     <div>
-      <div>BOARD DETAIL</div>
       <Link to={`/board/edit/${id}`}>
-        <button>글수정</button>
+        <Button variant="contained">글수정</Button>
       </Link>
       {detailData && (
         <div>
-          <p>{detailData.title}</p>
+          <p style={{fontWeight: '700'}}>{detailData.title}</p>
           <p>{detailData.content}</p>
         </div>
       )}

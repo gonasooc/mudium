@@ -22,7 +22,6 @@ function BoardWrite() {
 
   return (
     <div>
-      <div>BOARD WRITE</div>
       <div>
         <label htmlFor="">제목</label>
         <input
