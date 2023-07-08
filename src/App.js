@@ -15,7 +15,8 @@ import { BoardDetail } from "pages/board/BoardDetail";
 import { BoardEdit } from "pages/board/BoardEdit";
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebaseConfig";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser, clearUser } from "redux/userSlice";
 
 const theme = createTheme({
   // 별도 테마 설정(MUI 기본 폰트 변경)
@@ -28,20 +29,19 @@ const theme = createTheme({
 function App() {
   const auth = getAuth();
 
-  let state = useSelector((state) => {
-    return state;
-  });
-
-  console.log("state", state);
+  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+  console.log("user", user);
 
   let [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log('user', user)
+        dispatch(setUser(user));
         setIsLogin(true);
       } else {
+        dispatch(clearUser());
         setIsLogin(false);
       }
     });
