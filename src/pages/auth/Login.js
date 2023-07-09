@@ -1,6 +1,8 @@
 import { signInWithEmailAndPassword, getAuth } from "firebaseConfig";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -33,43 +35,54 @@ function Login() {
   return (
     <div className="page-container">
       <div className="layout-center">
-        <form action="">
-          <div>
-            <label htmlFor="">이메일</label>
-            <input
-              name="email"
-              type="email"
-              value={email}
-              required
-              onChange={(event) => {
-                onChange(event);
-              }}
-            />
-          </div>
-          <div>
-            <label htmlFor="">비밀번호</label>
-            <input
-              name="password"
-              type="password"
-              value={password}
-              required
-              onChange={(event) => {
-                onChange(event);
-              }}
-            />
-          </div>
+        <div>
+          <TextField
+            required
+            id="standard-basic"
+            label="이메일"
+            name="email"
+            type="email"
+            variant="standard"
+            value={email}
+            onChange={(event) => {
+              onChange(event);
+            }}
+          />
+        </div>
+        <div>
+          <TextField
+            name="password"
+            type="password"
+            value={password}
+            required
+            onChange={(event) => {
+              onChange(event);
+            }}
+            id="standard-basic"
+            label="비밀번호"
+            variant="standard"
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            gap: "5px",
+            padding: "10px 0",
+          }}
+        >
           <Link to="/register">
-            <button type="button">회원가입</button>
+            <Button variant="outlined">회원가입</Button>
           </Link>
-          <button
-            type="button"
+          <Button
+            variant="contained"
             onClick={() => {
               login();
             }}
           >
             로그인
-          </button>
-        </form>
+          </Button>
+        </div>
       </div>
     </div>
   );

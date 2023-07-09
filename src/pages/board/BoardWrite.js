@@ -1,9 +1,11 @@
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "firebaseConfig";
 import { useState } from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
 
 function BoardWrite() {
-  // const uniqueId = useId();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -22,35 +24,36 @@ function BoardWrite() {
 
   return (
     <div>
-      <div>
-        <label htmlFor="">제목</label>
-        <input
-          type="text"
+      <FormControl fullWidth>
+        <TextField
+          style={{ marginBottom: "10px" }}
+          id="standard-basic"
+          label="제목"
+          variant="standard"
           onChange={(event) => {
             setTitle(event.target.value);
           }}
         />
-      </div>
-      <div>
-        <label htmlFor="">내용</label>
-        <textarea
-          name=""
-          id=""
-          cols="30"
-          rows="10"
+        <TextField
+          id="outlined-multiline-static"
+          label="내용"
+          multiline
+          rows={4}
           onChange={(event) => {
             setContent(event.target.value);
           }}
-        ></textarea>
+        />
+      </FormControl>
+      <div style={{ marginTop: "10px", textAlign: "right" }}>
+        <Button
+          variant="contained"
+          onClick={() => {
+            write();
+          }}
+        >
+          작성하기
+        </Button>
       </div>
-      <button
-        type="button"
-        onClick={() => {
-          write();
-        }}
-      >
-        글 작성
-      </button>
     </div>
   );
 }

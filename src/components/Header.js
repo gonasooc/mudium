@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 import { getAuth, onAuthStateChanged } from "firebaseConfig";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import Button from "@mui/material/Button";
 
 export default function Header() {
   const auth = getAuth();
@@ -46,16 +47,16 @@ export default function Header() {
         <div>
           {loginState ? (
             <>
-              {/* <span>{user.email}</span> */}
               {/* FIXME: redux에서 받아오는 값 비동기 처리 필요 */}
-              <button
-                type="button"
+              {/* <span>{user.email}</span> */}
+              <Button
+                variant="contained"
                 onClick={() => {
                   signOutAndGoLoginPage();
                 }}
               >
                 로그아웃
-              </button>
+              </Button>
             </>
           ) : null}
         </div>

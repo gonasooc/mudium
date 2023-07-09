@@ -1,5 +1,7 @@
 import { createUserWithEmailAndPassword, getAuth } from "firebaseConfig";
 import { useState } from "react";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -32,44 +34,55 @@ function Register() {
   return (
     <div className="page-container">
       <div className="layout-center">
-        <form action="">
-          <div>
-            <label htmlFor="">이메일</label>
-            <input
-              name="email"
-              type="email"
-              required
-              value={email}
-              onChange={(event) => {
-                onChange(event);
-              }}
-            />
-          </div>
-          <div>
-            <label htmlFor="">비밀번호</label>
-            <input
-              name="password"
-              type="password"
-              value={password}
-              placeholder="비밀번호를 입력해주세요"
-              required
-              onChange={(event) => {
-                onChange(event);
-              }}
-            />
-          </div>
-          <div>
-            <input type="text" placeholder="비밀번호를 한번 더 입력해주세요" />
-          </div>
-          <button
-            type="button"
+        <div>
+          <TextField
+            required
+            id="standard-basic"
+            label="이메일"
+            name="email"
+            type="email"
+            variant="standard"
+            value={email}
+            onChange={(event) => {
+              onChange(event);
+            }}
+          />
+        </div>
+        <div>
+          <TextField
+            name="password"
+            type="password"
+            value={password}
+            required
+            onChange={(event) => {
+              onChange(event);
+            }}
+            id="standard-basic"
+            label="비밀번호"
+            variant="standard"
+          />
+        </div>
+        {/* TODO: 비밀번호확인 validation 작업 필요 */}
+        <div>
+          <TextField
+            type="password"
+            required
+            id="standard-basic"
+            label="비밀번호 확인"
+            variant="standard"
+          />
+        </div>
+
+        <div style={{ padding: "10px 0" }}>
+          <Button
+            variant="outlined"
             onClick={() => {
               register();
             }}
           >
             회원가입
-          </button>
-        </form>
+          </Button>
+        </div>
       </div>
     </div>
   );
