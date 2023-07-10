@@ -1,24 +1,47 @@
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "firebaseConfig";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function BoardWrite() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user.user);
+
+  useEffect(() => {
+    if (!user) {
+      navigate(-1);
+    }
+  }, []);
 
   const write = async () => {
+    if (title.length === 0) {
+      alert("제목을 입력해주세요");
+      return;
+    }
+    if (content.length === 0) {
+      alert("내용을 입력해주세요");
+      return;
+    }
+
     try {
       const docRef = await addDoc(collection(db, "board"), {
+        uid: user.uid,
+        email: user.email,
         title: title,
         content: content,
       });
-      console.log("Document written with ID: ", docRef.id);
       alert("글 등록이 완료됐습니다.");
     } catch (error) {
       console.log(error);
+    } finally {
+      navigate("/board/list");
+      window.location.reload(); // TODO: router 이동 후 새로고침할 적절한 방법을 모르겠어서 임시방편
     }
   };
 

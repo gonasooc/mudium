@@ -13,6 +13,8 @@ function BoardEdit() {
   const [loader, setloader] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [uid, setUid] = useState(null);
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,6 +27,8 @@ function BoardEdit() {
         if (docSnap.exists()) {
           setTitle(docSnap.data().title);
           setContent(docSnap.data().content);
+          setUid(docSnap.data().uid);
+          setEmail(docSnap.data().email);
         } else {
           console.log("No such document!");
         }
@@ -39,8 +43,19 @@ function BoardEdit() {
   }, []);
 
   const edit = async () => {
+    if (title.length === 0) {
+      alert("제목을 입력해주세요");
+      return;
+    }
+    if (content.length === 0) {
+      alert("내용을 입력해주세요");
+      return;
+    }
+
     try {
       await setDoc(doc(db, "board", id), {
+        uid: uid,
+        email: email,
         title: title,
         content: content,
       });

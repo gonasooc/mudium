@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import Loader from "components/Loader";
+import { useSelector } from "react-redux";
 
 function BoardList() {
   const outletContext = useOutletContext();
@@ -16,6 +17,7 @@ function BoardList() {
   const [data, setData] = useState(null);
   const [loader, setLoader] = useState(false);
   // const boardArr = outletContext.boardData.docs;
+  const user = useSelector((state) => state.user.user);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,13 +44,20 @@ function BoardList() {
         <Loader />
       ) : (
         <>
-          <div style={{ textAlign: "right", padding: "10px 0" }}>
-            <Link to="/board/write">
-              <Button variant="contained">글쓰기</Button>
-            </Link>
-          </div>
+          {user ? (
+            <div style={{ textAlign: "right", padding: "10px 0" }}>
+              <Link to="/board/write">
+                <Button variant="contained">글쓰기</Button>
+              </Link>
+            </div>
+          ) : null}
+
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 350 }} aria-label="sticky table">
+            <Table
+              sx={{ minWidth: 350 }}
+              aria-label="sticky table"
+              style={{ tableLayout: "fixed" }}
+            >
               <TableHead>
                 <TableRow>
                   <TableCell>제목</TableCell>
@@ -66,19 +75,28 @@ function BoardList() {
                     key={item.id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell component="th" scope="row">
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      className="type-one-line"
+                    >
                       {
                         item._document.data.value.mapValue.fields.title
                           .stringValue
                       }
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="type-one-line">
                       {
                         item._document.data.value.mapValue.fields.content
                           .stringValue
                       }
                     </TableCell>
-                    <TableCell align="right">{"작성자"}</TableCell>
+                    <TableCell className="type-one-line" align="right">
+                      {
+                        item._document.data.value.mapValue.fields.email
+                          .stringValue
+                      }
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

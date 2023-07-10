@@ -4,6 +4,7 @@ import { getAuth, onAuthStateChanged } from "firebaseConfig";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Button from "@mui/material/Button";
+import logo from "assets/logo512.png";
 
 export default function Header() {
   const auth = getAuth();
@@ -14,8 +15,6 @@ export default function Header() {
   const location = useLocation();
 
   useEffect(() => {
-    console.log("location", location);
-
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setLoginState(true);
@@ -36,19 +35,30 @@ export default function Header() {
         className="header-inner"
         style={{ display: "flex", justifyContent: "space-between" }}
       >
-        <div>
-          <Link to="/">
-            <span>HOME</span>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            gap: "10px",
+          }}
+        >
+          <Link className="logo-link" to="/">
+            <img src={logo} alt="logo" className="logo-img" />
           </Link>
-          <Link to="/board/list">
-            <span>BOARD</span>
-          </Link>
+          <div>
+            <Link to="/board/list">
+              <span style={{ fontSize: "16px", fontWeight: "500" }}>BOARD</span>
+            </Link>
+          </div>
         </div>
         <div>
           {loginState ? (
             <>
               {/* FIXME: redux에서 받아오는 값 비동기 처리 필요 */}
-              {/* <span>{user.email}</span> */}
+              <span style={{ fontSize: "14px", marginRight: "6px" }}>
+                {user?.email}
+              </span>
               <Button
                 variant="contained"
                 onClick={() => {

@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState("");
   const auth = getAuth();
 
   const onChange = (event) => {
@@ -16,10 +17,17 @@ function Register() {
       setEmail(value);
     } else if (name === "password") {
       setPassword(value);
+    } else if (name === "password_check") {
+      setPasswordCheck(value);
     }
   };
 
   const register = async () => {
+    if (password !== passwordCheck) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
     try {
       await createUserWithEmailAndPassword(auth, email, password).then(
         (useCredential) => {
@@ -65,8 +73,13 @@ function Register() {
         {/* TODO: 비밀번호확인 validation 작업 필요 */}
         <div>
           <TextField
+            name="password_check"
             type="password"
+            value={passwordCheck}
             required
+            onChange={(event) => {
+              onChange(event);
+            }}
             id="standard-basic"
             label="비밀번호 확인"
             variant="standard"
