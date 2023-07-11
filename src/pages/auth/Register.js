@@ -23,6 +23,16 @@ function Register() {
   };
 
   const register = async () => {
+    if (!email) {
+      alert("이메일을 입력하세요.");
+      return;
+    }
+
+    if (!password) {
+      alert("비밀번호를 입력하세요.");
+      return;
+    }
+
     if (password !== passwordCheck) {
       alert("비밀번호가 일치하지 않습니다.");
       return;
@@ -31,11 +41,16 @@ function Register() {
     try {
       await createUserWithEmailAndPassword(auth, email, password).then(
         (useCredential) => {
-          console.log("회원가입 성공");
+          alert(`${useCredential.user.email}님 회원가입이 완료되었습니다.`);
         }
       );
     } catch (error) {
-      console.log(error);
+      console.log(error.code);
+      if (error.code === "auth/invalid-email") {
+        alert("이메일 형식이 아닙니다");
+      } else if (error.code === "auth/weak-password") {
+        alert("비밀번호를 최소 6자 이상으로 설정해주세요");
+      }
     }
   };
 

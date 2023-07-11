@@ -30,11 +30,12 @@ function BoardWrite() {
     }
 
     try {
-      const docRef = await addDoc(collection(db, "board"), {
+      await addDoc(collection(db, "board"), {
         uid: user.uid,
         email: user.email,
         title: title,
         content: content,
+        timestamp: new Date(),
       });
       alert("글 등록이 완료됐습니다.");
     } catch (error) {

@@ -24,11 +24,20 @@ function Login() {
     try {
       await signInWithEmailAndPassword(auth, email, password).then(
         (useCredential) => {
-          console.log("로그인완료");
+          alert(`${useCredential.user.email}님 로그인되었습니다.`);
         }
       );
     } catch (error) {
-      console.log(error);
+      console.log(error.code);
+      if (error.code === "auth/invalid-email") {
+        alert("이메일 형식이 아닙니다");
+      } else if (error.code === "auth/wrong-password") {
+        alert("비밀번호가 일치하지 않습니다.");
+      } else if (error.code === "auth/missing-password") {
+        alert("비밀번호를 입력해주세요.");
+      } else if (error.code === "auth/user-not-found") {
+        alert("가입된 정보가 없습니다.");
+      }
     }
   };
 

@@ -19,6 +19,10 @@
   text-overflow: ellipsis;
 }
 
+.type-tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
 .layout-center {
   max-width: 600px;
   margin: 0 auto;

@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import Loader from "components/Loader";
 import { useSelector } from "react-redux";
+import dayjs from "dayjs";
 
 function BoardList() {
   const outletContext = useOutletContext();
@@ -38,6 +39,8 @@ function BoardList() {
     navigate(`/board/detail/${id}`);
   };
 
+  console.log(data);
+
   return (
     <div>
       {loader ? (
@@ -61,8 +64,8 @@ function BoardList() {
               <TableHead>
                 <TableRow>
                   <TableCell>제목</TableCell>
-                  <TableCell>내용</TableCell>
                   <TableCell align="right">작성자</TableCell>
+                  <TableCell align="right">작성일</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -85,17 +88,19 @@ function BoardList() {
                           .stringValue
                       }
                     </TableCell>
-                    <TableCell className="type-one-line">
-                      {
-                        item._document.data.value.mapValue.fields.content
-                          .stringValue
-                      }
-                    </TableCell>
                     <TableCell className="type-one-line" align="right">
                       {
                         item._document.data.value.mapValue.fields.email
                           .stringValue
                       }
+                    </TableCell>
+                    <TableCell
+                      className="type-one-line type-tabular-nums"
+                      align="right"
+                    >
+                      {dayjs(
+                        item._document.createTime.timestamp.toDate()
+                      ).format("YYYY-MM-DD")}
                     </TableCell>
                   </TableRow>
                 ))}
