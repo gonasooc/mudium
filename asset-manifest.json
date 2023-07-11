@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/mudium/static/css/main.1555a2d7.css",
-    "main.js": "/mudium/static/js/main.bd0a66af.js",
+    "main.css": "/mudium/static/css/main.157716be.css",
+    "main.js": "/mudium/static/js/main.a28e0028.js",
     "static/js/787.190cb46c.chunk.js": "/mudium/static/js/787.190cb46c.chunk.js",
     "static/media/logo512.png": "/mudium/static/media/logo512.d7a094ac4a3fc0e278fd.png",
     "index.html": "/mudium/index.html",
-    "main.1555a2d7.css.map": "/mudium/static/css/main.1555a2d7.css.map",
-    "main.bd0a66af.js.map": "/mudium/static/js/main.bd0a66af.js.map",
+    "main.157716be.css.map": "/mudium/static/css/main.157716be.css.map",
+    "main.a28e0028.js.map": "/mudium/static/js/main.a28e0028.js.map",
     "787.190cb46c.chunk.js.map": "/mudium/static/js/787.190cb46c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1555a2d7.css",
-    "static/js/main.bd0a66af.js"
+    "static/css/main.157716be.css",
+    "static/js/main.a28e0028.js"
   ]
 }
