@@ -25,7 +25,7 @@ function Login() {
       await signInWithEmailAndPassword(auth, email, password).then(
         (useCredential) => {
           alert(`${useCredential.user.email}님 로그인되었습니다.`);
-        }
+        },
       );
     } catch (error) {
       console.log(error.code);

@@ -31,8 +31,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "postinstall": "husky install",
-    "format": "prettier --cache --write .",
-    "lint": "eslint --cache ."
+    "format": "npx prettier --cache --write ."
   },
   "eslintConfig": {
     "extends": [

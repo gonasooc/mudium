@@ -99,7 +99,7 @@ function BoardList() {
                       align="right"
                     >
                       {dayjs(
-                        item._document.createTime.timestamp.toDate()
+                        item._document.createTime.timestamp.toDate(),
                       ).format("YYYY-MM-DD")}
                     </TableCell>
                   </TableRow>

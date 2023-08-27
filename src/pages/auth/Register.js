@@ -42,7 +42,7 @@ function Register() {
       await createUserWithEmailAndPassword(auth, email, password).then(
         (useCredential) => {
           alert(`${useCredential.user.email}님 회원가입이 완료되었습니다.`);
-        }
+        },
       );
     } catch (error) {
       console.log(error.code);
