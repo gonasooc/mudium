@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebaseConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser, clearUser } from "redux/userSlice";
+import BottomNav from "components/BottomNav";
 
 const theme = createTheme({
   // 별도 테마 설정(MUI 기본 폰트 변경)
@@ -62,6 +63,7 @@ function App() {
           <Route path="edit/:id" element={<BoardEdit />} />
         </Route>
       </Routes>
+      <BottomNav />
       {/* </Router> */}
     </ThemeProvider>
   );

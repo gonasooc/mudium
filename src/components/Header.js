@@ -46,11 +46,6 @@ export default function Header() {
           <Link className="logo-link" to="/">
             <img src={logo} alt="logo" className="logo-img" />
           </Link>
-          <div>
-            <Link to="/board/list">
-              <span style={{ fontSize: "16px", fontWeight: "500" }}>BOARD</span>
-            </Link>
-          </div>
         </div>
         <div>
           {loginState ? (
