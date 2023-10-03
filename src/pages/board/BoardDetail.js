@@ -108,7 +108,7 @@ function BoardDetail() {
                   {dt}
                 </p>
               </div>
-              <p>{detailData.content}</p>
+              <p style={{ whiteSpace: "pre-line" }}>{detailData.content}</p>
             </div>
           )}
         </div>

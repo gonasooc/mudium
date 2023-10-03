@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "firebaseConfig";
 
@@ -8,7 +8,8 @@ function Index() {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await getDocs(collection(db, "board"));
+      const q = query(collection(db, "board"), orderBy("timestamp", "desc"));
+      const data = await getDocs(q);
       setBoardData(data);
     };
 
