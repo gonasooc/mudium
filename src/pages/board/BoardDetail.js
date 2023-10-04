@@ -54,6 +54,20 @@ function BoardDetail() {
     }
   };
 
+  const extractYouTubeVideoId = (link) => {
+    if (!link) {
+      return null;
+    }
+
+    const regex =
+      /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = link.match(regex);
+    return match && match[1];
+  };
+
+  // YouTube 링크 추출
+  const youtubeVideoId = extractYouTubeVideoId(detailData.youtubeLink);
+
   return (
     <>
       {loader ? (
@@ -109,6 +123,18 @@ function BoardDetail() {
                 </p>
               </div>
               <p style={{ whiteSpace: "pre-line" }}>{detailData.content}</p>
+
+              {youtubeVideoId && (
+                <div style={{ marginTop: "20px" }}>
+                  <iframe
+                    width="560"
+                    height="315"
+                    src={`https://www.youtube.com/embed/${youtubeVideoId}`}
+                    title="YouTube video player"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              )}
             </div>
           )}
         </div>

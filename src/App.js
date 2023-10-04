@@ -1,7 +1,7 @@
 import "styles/Base.scss"; // reset css
 import "styles/App.scss"; // main css
 import "styles/Header.scss"; // header css
-import { BrowserRouter as Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
 // import { db } from "./firebaseConfig";
 import Header from "components/Header";

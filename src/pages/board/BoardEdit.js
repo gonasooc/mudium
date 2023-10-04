@@ -13,6 +13,8 @@ function BoardEdit() {
   const [loader, setloader] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [youtubeLink, setYoutubeLink] = useState("");
+  const [timestamp, setTimestamp] = useState("");
   const [uid, setUid] = useState(null);
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
@@ -29,6 +31,8 @@ function BoardEdit() {
           setContent(docSnap.data().content);
           setUid(docSnap.data().uid);
           setEmail(docSnap.data().email);
+          setYoutubeLink(docSnap.data().youtubeLink);
+          setTimestamp(docSnap.data().timestamp);
         } else {
           console.log("No such document!");
         }
@@ -58,6 +62,8 @@ function BoardEdit() {
         email: email,
         title: title,
         content: content,
+        youtubeLink: youtubeLink,
+        timestamp: timestamp,
       });
       alert("글 수정이 완료되었습니다.");
     } catch (error) {
@@ -93,6 +99,16 @@ function BoardEdit() {
               defaultValue={content}
               onChange={(event) => {
                 setContent(event.target.value);
+              }}
+            />
+            <TextField
+              style={{ marginBottom: "10px" }}
+              id="standard-basic"
+              label="유튜브 링크"
+              variant="standard"
+              defaultValue={youtubeLink}
+              onChange={(event) => {
+                setYoutubeLink(event.target.value);
               }}
             />
           </FormControl>

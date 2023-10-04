@@ -10,6 +10,8 @@ import { useSelector } from "react-redux";
 function BoardWrite() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [youtubeLink, setYoutubeLink] = useState("");
+
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
 
@@ -35,6 +37,7 @@ function BoardWrite() {
         email: user.email,
         title: title,
         content: content,
+        youtubeLink: youtubeLink,
         timestamp: new Date(),
       });
       alert("글 등록이 완료됐습니다.");
@@ -65,6 +68,15 @@ function BoardWrite() {
           rows={4}
           onChange={(event) => {
             setContent(event.target.value);
+          }}
+        />
+        <TextField
+          style={{ marginBottom: "10px" }}
+          id="standard-basic"
+          label="유튜브 링크"
+          variant="standard"
+          onChange={(event) => {
+            setYoutubeLink(event.target.value);
           }}
         />
       </FormControl>
