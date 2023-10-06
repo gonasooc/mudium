@@ -25,6 +25,11 @@ const theme = createTheme({
     fontFamily:
       "'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif",
   },
+  palette: {
+    primary: {
+      main: "#4B928F",
+    },
+  },
 });
 
 function App() {
@@ -53,7 +58,6 @@ function App() {
       {/* <Router> */}
       <Header />
       <Routes>
-        {/* <Route path="/login" element={!isLogin ? <Login /> : <Home />} /> */}
         <Route path="/register" element={!isLogin ? <Register /> : <Home />} />
         <Route path="/" element={isLogin ? <Home /> : <Login />} />
         <Route path="/board" element={<Index />}>

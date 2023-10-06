@@ -27,6 +27,10 @@ export default function Header() {
     navigate("/");
   };
 
+  const goLoginPage = () => {
+    navigate("/");
+  };
+
   return (
     <div className="mudium-header">
       <div
@@ -61,7 +65,16 @@ export default function Header() {
                 로그아웃
               </Button>
             </>
-          ) : null}
+          ) : (
+            <Button
+              variant="contained"
+              onClick={() => {
+                goLoginPage();
+              }}
+            >
+              로그인
+            </Button>
+          )}
         </div>
       </div>
     </div>

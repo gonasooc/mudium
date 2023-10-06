@@ -1,12 +1,12 @@
-import { signInWithEmailAndPassword, getAuth } from "firebaseConfig";
-import { Link } from "react-router-dom";
+import { createUserWithEmailAndPassword, getAuth } from "firebaseConfig";
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-function Login() {
+function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState("");
   const auth = getAuth();
 
   const onChange = (event) => {
@@ -17,26 +17,41 @@ function Login() {
       setEmail(value);
     } else if (name === "password") {
       setPassword(value);
+    } else if (name === "password_check") {
+      setPasswordCheck(value);
     }
   };
 
-  const login = async () => {
+  const register = async () => {
+    if (!email) {
+      alert("이메일을 입력하세요.");
+      return;
+    }
+
+    if (!password) {
+      alert("비밀번호를 입력하세요.");
+      return;
+    }
+
+    if (password !== passwordCheck) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
     try {
-      await signInWithEmailAndPassword(auth, email, password).then(
+      await createUserWithEmailAndPassword(auth, email, password).then(
         (useCredential) => {
-          alert(`${useCredential.user.email}님 로그인되었습니다.`);
-        },
+          alert(`${useCredential.user.email}님 회원가입이 완료되었습니다.`);
+        }
       );
     } catch (error) {
       console.log(error.code);
       if (error.code === "auth/invalid-email") {
         alert("이메일 형식이 아닙니다");
-      } else if (error.code === "auth/wrong-password") {
-        alert("비밀번호가 일치하지 않습니다.");
-      } else if (error.code === "auth/missing-password") {
-        alert("비밀번호를 입력해주세요.");
-      } else if (error.code === "auth/user-not-found") {
-        alert("가입된 정보가 없습니다.");
+      } else if (error.code === "auth/weak-password") {
+        alert("비밀번호를 최소 6자 이상으로 설정해주세요");
+      } else if (error.code === "auth/email-already-in-use") {
+        alert("이미 가입된 정보가 있습니다.");
       }
     }
   };
@@ -72,24 +87,30 @@ function Login() {
             variant="standard"
           />
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-start",
-            gap: "5px",
-            padding: "10px 0",
-          }}
-        >
-          <Link to="/register">
-            <Button variant="outlined">회원가입</Button>
-          </Link>
+        {/* TODO: 비밀번호확인 validation 작업 필요 */}
+        <div>
+          <TextField
+            name="password_check"
+            type="password"
+            value={passwordCheck}
+            required
+            onChange={(event) => {
+              onChange(event);
+            }}
+            id="standard-basic"
+            label="비밀번호 확인"
+            variant="standard"
+          />
+        </div>
+
+        <div style={{ padding: "10px 0" }}>
           <Button
-            variant="contained"
+            variant="outlined"
             onClick={() => {
-              login();
+              register();
             }}
           >
-            로그인
+            회원가입
           </Button>
         </div>
       </div>
@@ -97,4 +118,4 @@ function Login() {
   );
 }
 
-export { Login };
+export { Register };
