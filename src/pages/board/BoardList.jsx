@@ -1,7 +1,8 @@
 import { Link, useOutletContext, useNavigate } from "react-router-dom";
+import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -12,7 +13,17 @@ import Loader from "components/Loader";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 
-function BoardList() {
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.primary.light,
+    color: theme.palette.primary.contrastText,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 15,
+  },
+}));
+
+const BoardList = () => {
   const outletContext = useOutletContext();
   const navigate = useNavigate();
   const [data, setData] = useState(null);
@@ -57,15 +68,21 @@ function BoardList() {
 
           <TableContainer component={Paper}>
             <Table
-              sx={{ minWidth: 350 }}
+              sx={{ minWidth: 400 }}
               aria-label="sticky table"
               style={{ tableLayout: "fixed" }}
             >
               <TableHead>
                 <TableRow>
-                  <TableCell>제목</TableCell>
-                  <TableCell align="right">작성자</TableCell>
-                  <TableCell align="right">작성일</TableCell>
+                  <StyledTableCell style={{ width: "50%" }}>
+                    제목
+                  </StyledTableCell>
+                  <StyledTableCell align="right" style={{ width: "25%" }}>
+                    작성자
+                  </StyledTableCell>
+                  <StyledTableCell align="right" style={{ width: "25%" }}>
+                    작성일
+                  </StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -99,7 +116,7 @@ function BoardList() {
                       align="right"
                     >
                       {dayjs(
-                        item._document.createTime.timestamp.toDate(),
+                        item._document.createTime.timestamp.toDate()
                       ).format("YYYY-MM-DD")}
                     </TableCell>
                   </TableRow>
@@ -111,6 +128,6 @@ function BoardList() {
       )}
     </div>
   );
-}
+};
 
 export { BoardList };

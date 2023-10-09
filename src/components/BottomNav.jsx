@@ -21,9 +21,6 @@ const BottomNav = () => {
       case "board":
         navigate("/board/list");
         break;
-      case "search":
-        navigate("/search");
-        break;
       case "library":
         navigate("/library");
         break;
@@ -52,11 +49,6 @@ const BottomNav = () => {
             label="Board"
             value="board"
             icon={<NoteAltIcon />}
-          />
-          <BottomNavigationAction
-            label="Search"
-            value="search"
-            icon={<SearchIcon />}
           />
           <BottomNavigationAction
             label="Library"
