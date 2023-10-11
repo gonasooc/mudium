@@ -3,7 +3,6 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import HomeIcon from "@mui/icons-material/Home";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import SearchIcon from "@mui/icons-material/Search";
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import { Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +21,10 @@ const BottomNav = () => {
         navigate("/board/list");
         break;
       case "library":
-        navigate("/library");
+        // navigate("/library");
+        alert("준비중입니다 :) 게시판으로 이동합니다."); // temp
+        setValue("board"); // temp
+        navigate("/board/list"); // temp
         break;
       default:
         navigate("/home"); // 기본적으로 홈 페이지로 이동

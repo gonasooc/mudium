@@ -2,10 +2,13 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { db } from "firebaseConfig";
 import { doc, getDoc, deleteDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+
 import Loader from "components/Loader";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
+import ShareButton from "components/ShareButton";
 
 function BoardDetail() {
   const params = useParams();
@@ -38,6 +41,7 @@ function BoardDetail() {
     };
 
     getDetail();
+    console.log("detailData", detailData);
   }, []);
 
   const deletePost = async () => {
@@ -101,9 +105,31 @@ function BoardDetail() {
           )}
           {detailData && (
             <div>
-              <p style={{ fontSize: "20px", fontWeight: "600" }}>
-                {detailData.title}
-              </p>
+              <Stack
+                direction="row"
+                justifyContent="space-between"
+                alignItems="flex-start"
+                spacing={1}
+                style={{ padding: "16px 0" }}
+              >
+                <p
+                  className=""
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "600",
+                  }}
+                >
+                  {detailData.title}
+                </p>
+                <Stack
+                  direction="row"
+                  justifyContent="flex-end"
+                  alignItems="center"
+                  spacing={1}
+                >
+                  <ShareButton paramsId={paramsId} />
+                </Stack>
+              </Stack>
               <div
                 style={{
                   display: "flex",
@@ -125,10 +151,11 @@ function BoardDetail() {
               <p style={{ whiteSpace: "pre-line" }}>{detailData.content}</p>
 
               {youtubeVideoId && (
-                <div style={{ marginTop: "20px" }}>
+                <div
+                  className="responsive-iframe"
+                  style={{ marginTop: "20px" }}
+                >
                   <iframe
-                    width="560"
-                    height="315"
                     src={`https://www.youtube.com/embed/${youtubeVideoId}`}
                     title="YouTube video player"
                     allowFullScreen
